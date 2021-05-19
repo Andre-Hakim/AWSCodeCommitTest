@@ -1,0 +1,68 @@
+<html>
+<head>
+  <meta charset="utf-8">
+
+</head>
+<body>
+  <p class="line-1 anim-typewriter">Auxiliary</p>
+  <div id="particles-js"></div>
+  <script type="text/javascript" src="particles.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  
+</body>
+
+<style>
+  body{
+    margin:0;
+    padding:0;
+    height: 100vh;
+  }
+  #particles-js{
+    height: 100%;
+    background: white;
+  }
+
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap);
+
+/* Global */
+html{
+  min-height: 100%;
+  overflow: hidden;
+}
+body{
+  height: calc(100vh - 8em);
+  padding: 4em;
+  color: black;
+  font-family: 'Share Tech Mono', monospace; 
+  background-color: white;  
+}
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 6em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 1s steps(20) 1s 1 normal both,
+             blinkTextCursor 400ms steps(20) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 150px;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: black;}
+  to{border-right-color: white;}
+}
+</style> 
+
+</html>
