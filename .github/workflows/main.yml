@@ -15,5 +15,5 @@ jobs:
         remote-user: ec2-user
         remote-key: ${{ secrets.SSH_KEY_AWS_TEST }}
         source-path: ./home/
-        destination-path: ./AWSUploadTest/
+        destination-path: ./
         rsync-options: --insecure
