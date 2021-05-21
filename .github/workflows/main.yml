@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
-      uses: actions/checkout@v2.1.0
+      uses: actions/checkout
     
     - name: 📂 Sync files
-      uses: SamKirkland/web-deploy@1.0.0
+      uses: SamKirkland/web-deploy
       with:
         target-server: ${{ secrets.PUBLICIP }}
         remote-user: ec2-user
