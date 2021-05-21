@@ -16,4 +16,3 @@ jobs:
         remote-key: ${{ secrets.SSH_KEY_AWS_TEST }}
         source-path: ./home/
         destination-path: ./
-        rsync-options: --insecure
