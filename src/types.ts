@@ -6,5 +6,5 @@ export interface IActionArguments {
     remote_key: string;
 
     /** @default "--verbose --recursive --compress --human-readable" */
-    //rsync_options: string;
+    rsync_options: string;
 }

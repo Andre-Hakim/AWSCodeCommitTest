@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "ncc build src/main.ts --no-cache",
-    "deploy": "npm run build && node ./dist/index.js --target-server samkirkland.com --remote-user \"sshUser\" --remote-key \"sshPassword\" --source-path ./"
+    "deploy": "npm run build && node ./dist/index.js --target-server samkirkland.com --remote-user \"sshUser\" --remote-key \"sshPassword\" --source-path ./ --destination-path rsync-target/"
   },
   "repository": {
     "type": "git",
@@ -16,8 +16,8 @@
     "website deploy",
     "continuous integration",
     "sftp",
-    "ssh"
-    
+    "ssh",
+    "rsync"
   ],
   "author": "Sam Kirkland",
   "license": "MIT",
