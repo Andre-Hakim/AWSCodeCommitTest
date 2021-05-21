@@ -9,7 +9,7 @@ jobs:
       uses: actions/checkout@v2.1.0
     
     - name: 📂 Sync files
-      uses: SamKirkland/web-deploy@1.0.0
+      uses: ./
       with:
         target-server: ${{ secrets.PUBLICIP }}
         remote-user: ec2-user
