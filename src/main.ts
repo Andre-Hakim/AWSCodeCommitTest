@@ -9,7 +9,7 @@ async function run() {
   try {
     const userArguments = getUserArguments();
 
-    await installCommand("rsync");
+    //await installCommand("rsync");
     await syncFiles(userArguments);
 
     console.log("✅ Deploy Complete");

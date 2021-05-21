@@ -17,10 +17,10 @@ inputs:
   destination-path:
     description: 'Folder to upload from, must end with trailing slash /'
     required: true
-  # rsync-options:
-  #   description: 'Passes through options into rsync'
-  #   default: 
-  #   required: false
+  rsync-options:
+    description: 'Passes through options into rsync'
+    default: 
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
