@@ -12,7 +12,7 @@ jobs:
       uses: ./
       with:
         target-server: ${{ secrets.PUBLICIP }}
-        remote-user: ec2-user
+        remote-user: AndreHakim_AWS
         remote-key: ${{ secrets.SSH_KEY_AWS_TEST }}
         source-path: ./home/
         destination-path: ./
