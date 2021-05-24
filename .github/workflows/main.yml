@@ -2,18 +2,27 @@ on: push
 name: Publish Website
 jobs:
   web-deploy:
-    name: 🚀 Deploy website every commit
+    name: 🚀 Deploy To AWS
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2.1.0
-    
-    - name: 📂 Sync files
-      uses: ./
-      with:
-        target-server: ${{ secrets.PUBLICIP }}
-        remote-user: ec2-user
-        remote-key: ${{ secrets.SSH_KEY_AWS_TEST }}
-        source-path: ./AWSUploadTest
-        destination-path: ./home/ec2-user/home
-        rsync-options: --stats
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2.3.0 
+      with: 
+        key: ${{ secrets.SSH_KEY_AWS_TEST }}
+        known_hosts: 'foo'
+    steps:
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H ${{ secrets.PUBLICIP }}
+    steps:
+    - name: Deploy with rsync
+      run: rsync -avz ./AWSUploadTest ec2-user@${{ secrets.PUBLICIP }}:/home/
+
+    # - name: 📂 Sync files
+    #   uses: ./
+    #   with:
+    #     target-server: ${{ secrets.PUBLICIP }}
+    #     remote-user: ec2-user
+    #     remote-key: ${{ secrets.SSH_KEY_AWS_TEST }}
+    #     source-path: ./AWSUploadTest
+    #     destination-path: ./home/ec2-user/home
+    #     rsync-options: --stats
