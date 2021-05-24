@@ -14,6 +14,6 @@ jobs:
         target-server: ${{ secrets.PUBLICIP }}
         remote-user: ec2-user
         remote-key: ${{ secrets.SSH_KEY_AWS_TEST }}
-        source-path: ./AWSUploadTest/
+        source-path: ./
         destination-path: ./home/
         rsync-options: --stats
