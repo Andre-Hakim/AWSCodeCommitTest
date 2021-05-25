@@ -16,7 +16,7 @@ jobs:
     - name: List Contents
       run: ls -l ./
     - name: Deploy with rsync
-      run: rsync -avz ./TestDir ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/home/
+      run: rsync -ravz ./TestDir ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/home/
 
     # - name: 📂 Sync files
     #   uses: ./
