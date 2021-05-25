@@ -5,6 +5,7 @@ jobs:
     name: 🚀 Deploy To AWS
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2.3.0 
       with: 
@@ -13,9 +14,9 @@ jobs:
     - name: Adding Known Hosts
       run: ssh-keyscan -H ${{ secrets.PUBLICIP }} >> ~/.ssh/known_hosts
     - name: List Contents
-      run: ls -a
+      run: ls -l ./
     - name: Deploy with rsync
-      run: rsync -avz ./ ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/home/
+      run: rsync -avz ./TestDir ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/home/
 
     # - name: 📂 Sync files
     #   uses: ./
