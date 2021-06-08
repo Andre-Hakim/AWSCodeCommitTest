@@ -92,5 +92,5 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-#Test
-Test.css
+#tset
+TestDir/Test.css
