@@ -16,7 +16,7 @@ jobs:
     - name: List Contents
       run: ls -l ./
     - name: Deploy with rsync
-      run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/home/
+      run: rsync --filter=':- .gitignore' -ravz --delete ./wp-base/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
 
     # - name: 📂 Sync files
     #   uses: ./
