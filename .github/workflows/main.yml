@@ -17,10 +17,13 @@ jobs:
     - name: List Contents
       run: ls -l ./
     - name: npm Install
-      working-directory: ./TestDir2/public
+      working-directory: ./TestDir2
       run: npm install
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
+    - name: gulp
+      working-directory: ./TestDir2
+      run: gulp
 
     # - name: 📂 Sync files
     #   uses: ./
