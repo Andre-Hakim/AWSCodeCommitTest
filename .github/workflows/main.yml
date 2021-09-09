@@ -16,6 +16,9 @@ jobs:
       run: ssh-keyscan -H ${{ secrets.PUBLICIP }} >> ~/.ssh/known_hosts
     - name: List Contents
       run: ls -l ./
+    - name: npm Install
+      working-directory: ./TestDir2/public
+      run: npm install
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
 
