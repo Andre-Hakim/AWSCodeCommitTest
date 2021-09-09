@@ -68,17 +68,17 @@ gulp.task('js', (cb) => {
     .on('end', () => { cb(); });
 });
 
-gulp.task('watch', () => {
-  gulp.watch(paths.srcSASS+'/**/*.scss', gulp.series('sass'));
-  gulp.watch([paths.srcJS+'/**/*.js', '!'+paths.srcJS+'/**/*.min.js'], gulp.series('js'));
+// gulp.task('watch', () => {
+//   gulp.watch(paths.srcSASS+'/**/*.scss', gulp.series('sass'));
+//   gulp.watch([paths.srcJS+'/**/*.js', '!'+paths.srcJS+'/**/*.min.js'], gulp.series('js'));
 
-  // watch and move only modified file, instead of all files
-  gulp.src([paths.src, '!'+paths.srcSASS, '!'+paths.srcSASS+'/**', '!'+paths.srcJS])
-    .pipe(watch([paths.src, '!'+paths.srcSASS, '!'+paths.srcSASS+'/**', '!'+paths.srcJS]))
-    .pipe(gulp.dest(paths.dest));
-});
+//   // watch and move only modified file, instead of all files
+//   gulp.src([paths.src, '!'+paths.srcSASS, '!'+paths.srcSASS+'/**', '!'+paths.srcJS])
+//     .pipe(watch([paths.src, '!'+paths.srcSASS, '!'+paths.srcSASS+'/**', '!'+paths.srcJS]))
+//     .pipe(gulp.dest(paths.dest));
+// });
 
 // compile and copy everything
 gulp.task('compile', gulp.series('copy', 'sass', 'js'));
 
-gulp.task('default', gulp.series('compile', 'watch'));
+//gulp.task('default', gulp.series('compile', 'watch'));
