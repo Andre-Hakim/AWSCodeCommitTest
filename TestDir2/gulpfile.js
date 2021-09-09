@@ -79,6 +79,6 @@ gulp.task('js', (cb) => {
 // });
 
 // compile and copy everything
-gulp.task('compile', gulp.series('copy', 'sass', 'js'));
+//gulp.task('compile', gulp.series('copy', 'sass', 'js'));
 
-//gulp.task('default', gulp.series('compile', 'watch'));
+gulp.task('default', gulp.series('copy', 'sass', 'js'));
