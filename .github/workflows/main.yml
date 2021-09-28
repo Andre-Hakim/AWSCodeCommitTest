@@ -3,6 +3,9 @@ on: push
 name: Publish Website
 jobs:
   web-deploy:
+    name: Parse .env file
+    run: | 
+      while read line; do echo $line = $GITHUB_ENV; done < .env
     name: 🚀 Deploy To AWS
     runs-on: ubuntu-latest
     steps:
