@@ -27,7 +27,7 @@ jobs:
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
     - name: Spitting out Env file
-      run: echo "${{ env.PROJECT_NAME }}"
+      run: echo "${{ GITHUB_ENV.PROJECT_NAME }}"
 
     # - name: 📂 Sync files
     #   uses: ./
