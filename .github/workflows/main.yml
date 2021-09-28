@@ -3,13 +3,12 @@ on: push
 name: Publish Website
 jobs:
   web-deploy:
-    name: Parse .env file
-    run: | 
-      while read line; do echo $line = $GITHUB_ENV; done < .env
     name: 🚀 Deploy To AWS
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Parse .env file
+      run: while read line; do echo $line = $GITHUB_ENV; done < .env
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2.3.0 
       with: 
