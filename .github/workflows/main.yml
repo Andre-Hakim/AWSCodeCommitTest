@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Parse .env file
-      run: while read line; do echo $line = $GITHUB_ENV; done < ./.env
+      run: while read line; do echo $line >> $GITHUB_ENV; done < ./.env
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2.3.0 
       with: 
@@ -27,7 +27,7 @@ jobs:
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
     - name: Spitting out Env file
-      run: echo "${{ env }}"
+      run: echo "${{ env.PROJECT_NAME }}"
 
     # - name: 📂 Sync files
     #   uses: ./
