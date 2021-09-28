@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Parse .env file
-      run: while read line; do echo $line = $GITHUB_ENV; done < .env
+      run: while read line; do echo $line = $GITHUB_ENV; done < ./.env
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2.3.0 
       with: 
