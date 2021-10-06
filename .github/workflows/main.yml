@@ -32,7 +32,7 @@ jobs:
     - name: Display changed files
       if: contains(steps.changed-files.outputs.modified_files, 'testChange.txt')
       run: |
-        echo "Changed files: ${{ steps.verify-changed-files.outputs.files_changed}}"
+        echo "Changed files: ${{ steps.changed-files.outputs.modified_files }}"
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
     - name: Spitting out Env file
