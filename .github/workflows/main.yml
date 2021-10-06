@@ -30,6 +30,7 @@ jobs:
       id: changed-files
       uses: tj-actions/changed-files@v10
     - name: Display changed files
+      # might need to change this so that it matches with correct environemnt. Ex. docker.stage.yml / docker.local.yml
       if: contains(steps.changed-files.outputs.modified_files, 'testChange.txt')
       run: |
         echo "Changed: ${{ steps.changed-files.outputs.modified_files }}"
