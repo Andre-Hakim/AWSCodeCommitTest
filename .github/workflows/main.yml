@@ -31,7 +31,7 @@ jobs:
         files: |
              docker-compose.aux.yml
     - name: Display changed files
-      # if: steps.verify-changed-files.outputs.files_changed == 'true'
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
       run: |
         echo "Changed files: ${{ steps.verify-changed-files.outputs.files_changed}}"
     - name: Deploy with rsync
