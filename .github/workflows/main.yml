@@ -24,6 +24,16 @@ jobs:
     - name: gulp
       working-directory: ./TestDir2
       run: gulp compile
+    - name: Docker up command
+      uses: tj-actions/verify-changed-files@v8
+      id: verify-changed-files
+        with:
+          files: |
+             docker-compose.aux.yml
+    - name: Display changed files
+      # if: steps.verify-changed-files.outputs.files_changed == 'true'
+      run: |
+        echo "Changed files: ${{ steps.verify-changed-files.outputs.files_changed}}"
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
     - name: Spitting out Env file
