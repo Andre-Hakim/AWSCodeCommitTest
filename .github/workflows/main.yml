@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Parse .env file
       run: while read line; do echo $line >> $GITHUB_ENV; done < ./.env
     - name: Install SSH Key
