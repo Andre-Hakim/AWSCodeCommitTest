@@ -29,7 +29,7 @@ jobs:
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/ ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
     - name: Run Docker
-      run: ssh -t ec2-user@${{ secrets.PUBLICIP }} docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
+      run: ssh ec2-user@${{ secrets.PUBLICIP }} docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
     - name: Spitting out Env file
       run: echo ${{ env.PROJECT_NAME }}
 
