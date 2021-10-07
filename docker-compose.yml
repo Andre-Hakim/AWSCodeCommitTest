@@ -21,10 +21,10 @@ services:
     #depends_on:
     #  - nginx
     #  - mysql
-    networks:
-      - aux_default
+    # networks:
+    #   - aux_default
 
 
-networks:
-  aux_default:
-    external: true
+# networks:
+#   aux_default:
+#     external: true
