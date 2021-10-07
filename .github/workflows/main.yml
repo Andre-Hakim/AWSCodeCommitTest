@@ -26,14 +26,8 @@ jobs:
     - name: gulp
       working-directory: ./TestDir2
       run: gulp compile
-    - name: Docker up command
-      id: changed-files
-      uses: tj-actions/changed-files@v10
-    - name: Display changed files
-      # might need to change this so that it matches with correct environemnt. Ex. docker.stage.yml / docker.local.yml
-      if: contains(steps.changed-files.outputs.modified_files, 'testChange.txt')
-      run: |
-        echo "Changed: ${{ steps.changed-files.outputs.modified_files }}"
+    - name: Run Docker
+      run: docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d 
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
     - name: Spitting out Env file
@@ -48,3 +42,12 @@ jobs:
     #     source-path: ./AWSUploadTest
     #     destination-path: ./home/ec2-user/home
     #     rsync-options: --stats
+
+    # - name: Check for Changed files
+    #   id: changed-files
+    #   uses: tj-actions/changed-files@v10
+    # - name: Display changed files
+    #   # might need to change this so that it matches with correct environemnt. Ex. docker.stage.yml / docker.local.yml
+    #   if: contains(steps.changed-files.outputs.modified_files, 'testChange.txt')
+    #   run: |
+    #     echo "Changed: ${{ steps.changed-files.outputs.modified_files }}"

@@ -1,0 +1,14 @@
+# local: docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d 
+
+version: '3.1'
+services:
+  wordpress:
+    volumes:
+      - ./public:/var/www/html:rw,cached
+      #- ./public/wp-content:/var/www/html/wp-content:rw,delegated
+      - ./public/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    environment:
+      VIRTUAL_HOST: ${PROJECT_NAME}.local
+      HTTPS_METHOD: noredirect
+      HSTS: 'off'
+      CERT_NAME: local

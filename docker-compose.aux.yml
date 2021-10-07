@@ -1,0 +1,14 @@
+# staging: docker-compose -f docker-compose.yml -f docker-compose.aux.yml up -d 
+
+version: '3.1'
+services:
+  wordpress:
+    volumes:
+      - /files/${PROJECT_NAME}/public:/var/www/html:rw,cached
+      - /files/${PROJECT_NAME}/public/wp-content:/var/www/html/wp-content:rw,delegated
+      - /files/${PROJECT_NAME}/public/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    environment:
+      VIRTUAL_HOST: ${PROJECT_NAME}.stage.aux.dev
+      LETSENCRYPT_HOST: ${PROJECT_NAME}.stage.aux.dev
+      HTTPS_METHOD: redirect
+      HSTS: 'on'
