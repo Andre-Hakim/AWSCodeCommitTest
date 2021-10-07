@@ -27,7 +27,7 @@ jobs:
       working-directory: ./TestDir2
       run: gulp compile
     - name: Run Docker
-      run: docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d 
+      run: docker-compose -f ./env-compose.yml -f ./env-compose.local.yml -f docker-compose.yml up -d
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/public ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
     - name: Spitting out Env file
