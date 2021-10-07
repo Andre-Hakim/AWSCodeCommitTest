@@ -12,3 +12,4 @@ services:
       LETSENCRYPT_HOST: ${PROJECT_NAME}.stage.aux.dev
       HTTPS_METHOD: redirect
       HSTS: 'on'
+      ANDRE: 'Cool'
