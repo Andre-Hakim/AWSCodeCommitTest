@@ -28,10 +28,9 @@ jobs:
       run: gulp compile 
     - name: Deploy with rsync
       run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/ ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
-    - name: Tell us current working directory
-      run: ssh ec2-user@${{ secrets.PUBLICIP }} pwd | echo pwd
     - name: Run Docker
-      run: ssh ec2-user@${{ secrets.PUBLICIP }} docker-compose -f ./testAux/docker-compose.yml -f ./testAux/docker-compose.local.yml up -d  ######################## MAYBE TRY chaning directories to get it so that it runs off testaUX so env file is present.
+      working-directory: ./testAux
+      run: ssh ec2-user@${{ secrets.PUBLICIP }} docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d  ######################## MAYBE TRY chaning directories to get it so that it runs off testaUX so env file is present.
     - name: Spitting out Env file
       run: echo ${{ env.PROJECT_NAME }}
 
