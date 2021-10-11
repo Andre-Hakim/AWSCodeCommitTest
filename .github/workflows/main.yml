@@ -10,7 +10,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Parse .env file
-      run: while read line; do echo $line >> $GITHUB_ENV; done < ./TestDir2/.env
+      run: while read line; do echo $line >> $GITHUB_ENV; done < ./.env
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2.3.0 
       with: 
@@ -21,15 +21,15 @@ jobs:
     - name: List Contents
       run: ls -l ./
     - name: npm Install
-      working-directory: ./TestDir2
+      working-directory: ./
       run: npm install
     - name: gulp
-      working-directory: ./TestDir2
+      working-directory: ./
       run: gulp compile 
     - name: Deploy with rsync
-      run: rsync --filter=':- .gitignore' -ravz --delete ./TestDir2/ ec2-user@${{ secrets.PUBLICIP }}:/home/ec2-user/testAux/
+      run: rsync --filter=':- .gitignore' -ravz --delete ./ ec2-user@${{ secrets.PUBLICIP }}:/home/${{env.PROJECT_NAME}}/
     - name: Run Docker
-      run: ssh ec2-user@${{ secrets.PUBLICIP }} 'cd ./testAux ; docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d'  ##################### MAYBE TRY chaning directories to get it so that it runs off testaUX so env file is present
+      run: ssh ec2-user@${{ secrets.PUBLICIP }} 'cd ./home/${{env.PROJECT_NAME}}/ ; docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d'  ##################### MAYBE TRY chaning directories to get it so that it runs off testaUX so env file is present
     - name: Spitting out Env file
       run: echo ${{ env.PROJECT_NAME }}
 
